@@ -3,44 +3,26 @@ def count_words(book):
     return len(list_of_words)
 
 def count_characters(book):
-    word_counter = 0
-    list_of_words = book.split()
-    for word in list_of_words:
-        word_counter +=1
-    return word_counter
-
-def count_characters_list(book):
+    letter_dict = {}
     letter_list = []
-    print(not letter_list)
     list_of_words = book.split()
-    word_count = 0
     for word in list_of_words:
-        word_count += 1 
-        print(word_count)
         for letter in word:
-            word_dict = {"char": "", "num": 0}
-            if not letter_list:
-                word_dict["char"] = letter.lower()
-                word_dict["num"] = 1
-                letter_list.append(word_dict)
-                break
+            if letter.lower() not in letter_list:
+                letter_list.append(letter.lower())
+            lower_letter = letter.lower()
+            if lower_letter in letter_dict:
+                letter_dict[lower_letter] += 1 
             else:
-                is_contained = 0
-                for element in letter_list:
-                    if element["char"] == letter.lower():
-                        element["num"] += 1
-                        is_contained = 1
-                        break
-                if is_contained:
-                    word_dict["char"] = letter.lower()
-                    word_dict["num"] = 1
-                    letter_list.append(word_dict)
-                    break
-    return letter_list
-
-
-
-
-
-
-
+                letter_dict[lower_letter] = 1
+            letter_dict
+    final_list = []
+    counter = 0
+    for letter in letter_list:
+        dikt = dict()
+        dikt["char"] = letter 
+        dikt["num"] = letter_dict[letter]
+        counter += 1
+        final_list.append(dikt)
+    return final_list
+    
